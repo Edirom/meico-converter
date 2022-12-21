@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo bash required.sh
       - name: maven-settings
-        uses: s4u/maven-settings-action@v2.4.0
+        uses: s4u/maven-settings-action@v2.7.0
         with:
           servers: '[{"id": "edirom", "username": "vifebot", "password": "${GITHUB_TOKEN}"},{"id": "teic", "username": "vifebot", "password": "${GITHUB_TOKEN}"}]'
       - name: Build with Maven
