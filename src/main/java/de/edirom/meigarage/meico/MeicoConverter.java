@@ -12,7 +12,6 @@ import pl.psnc.dl.ege.exception.ConverterException;
 import pl.psnc.dl.ege.types.ConversionActionArguments;
 import pl.psnc.dl.ege.types.DataType;
 import pl.psnc.dl.ege.utils.IOResolver;
-import pl.psnc.dl.ege.utils.CommandLineUtils;
 
 import java.io.*;
 import java.text.DateFormat;
