@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- <parent>
+         <artifactId>ege</artifactId>
+         <groupId>pl.psnc.dl.ege</groupId>
+         <version>0.5.0</version>
+     </parent> -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.edirom.meigarage</groupId>
+    <artifactId>meico-converter</artifactId>
+    <version>0.0.0</version>
+
+    <name>Meico Converter</name>
+    <properties>
+
+        <project.build.sourceEncoding>
+            UTF-8
+        </project.build.sourceEncoding>
+
+        <project.reporting.outputEncoding>
+            UTF-8
+        </project.reporting.outputEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+    <licenses>
+        <license>
+            <name>GPL</name>
+            <url>http://www.gnu.org/licenses/gpl.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>roewenstrunk</id>
+            <name>Daniel Röwenstrunk</name>
+            <email>roewenstrunk@uni-paderborn.de</email>
+            <roles>
+                <role>Project lead</role>
+            </roles>
+            <organization>Paderborn University</organization>
+        </developer>
+    </developers>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>pl.psnc.dl.ege</groupId>
+            <artifactId>ege-framework</artifactId>
+            <version>0.5.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>meico.app</groupId>
+            <artifactId>meico</artifactId>
+            <version>0.8.45</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>edirom</id>
+            <name>Edirom</name>
+            <url>https://maven.pkg.github.com/Edirom/*</url>
+        </repository>
+        <repository>
+            <id>teic</id>
+            <name>TEIC</name>
+            <url>https://maven.pkg.github.com/TEIC/*</url>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>githubedirom</id>
+            <name>GitHub Edirom Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/edirom/meico-converter</url>
+        </repository>
+    </distributionManagement>
+</project>
