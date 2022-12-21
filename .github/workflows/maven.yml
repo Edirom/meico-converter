@@ -32,8 +32,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-        mvn install:install-file -Dfile=lib/meico.jar -DgroupId=meico.app -DartifactId=meico -Dversion=0.8.45 -Dpackaging=jar;
-        mvn -B package --file pom.xml
+          mvn install:install-file -Dfile=lib/meico.jar -DgroupId=meico.app -DartifactId=meico -Dversion=0.8.45 -Dpackaging=jar
+          mvn -B package --file pom.xml
       - name: Upload Maven build artifact
         uses: actions/upload-artifact@v2
         with:
