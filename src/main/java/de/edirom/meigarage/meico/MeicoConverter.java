@@ -73,25 +73,49 @@ public class MeicoConverter implements Converter {
         // MEI40TOMSM
         if (fromDataType.getFormat().equals(Conversion.MEI40TOMSM.getIFormatId()) &&
                 toDataType.getFormat().equals(Conversion.MEI40TOMSM.getOFormatId())) {
-            performMeicoTransformation(inputStream, outputStream, "mei", "msm", properties, tempDir);
+            performMeicoTransformation(inputStream, outputStream, "mei40", "msm", properties, tempDir);
 
         }
         // MEI40TOMPM
         else if (fromDataType.getFormat().equals(Conversion.MEI40TOMPM.getIFormatId()) &&
                 toDataType.getFormat().equals(Conversion.MEI40TOMPM.getOFormatId())) {
-            performMeicoTransformation(inputStream, outputStream, "mei", "mpm", properties, tempDir);
+            performMeicoTransformation(inputStream, outputStream, "mei40", "mpm", properties, tempDir);
 
         }
         // MEI 4.0 to MIDI
         else if (fromDataType.getFormat().equals(Conversion.MEI40TOMIDI.getIFormatId()) &&
                 toDataType.getFormat().equals(Conversion.MEI40TOMIDI.getOFormatId())) {
-            performMeicoTransformation(inputStream, outputStream, "mei", "midi", properties, tempDir);
+            performMeicoTransformation(inputStream, outputStream, "mei40", "midi", properties, tempDir);
 
         }
         // MIDITOMSM
         else if (fromDataType.getFormat().equals(Conversion.MIDITOMSM.getIFormatId()) &&
                 toDataType.getFormat().equals(Conversion.MIDITOMSM.getOFormatId())) {
             performMeicoTransformation(inputStream, outputStream, "midi", "msm", properties, tempDir);
+
+        }
+        //MIDITOMP3
+        else if (fromDataType.getFormat().equals(Conversion.MIDITOMP3.getIFormatId()) &&
+                toDataType.getFormat().equals(Conversion.MIDITOMP3.getOFormatId())) {
+            performMeicoTransformation(inputStream, outputStream, "midi", "mp3", properties, tempDir);
+
+        }
+        //MEI30TOMSM
+        else if (fromDataType.getFormat().equals(Conversion.MEI30TOMSM.getIFormatId()) &&
+                toDataType.getFormat().equals(Conversion.MEI30TOMSM.getOFormatId())) {
+            performMeicoTransformation(inputStream, outputStream, "mei30", "msm", properties, tempDir);
+
+        }
+        //MEI30TOMPM
+        else if (fromDataType.getFormat().equals(Conversion.MEI30TOMPM.getIFormatId()) &&
+                toDataType.getFormat().equals(Conversion.MEI30TOMPM.getOFormatId())) {
+            performMeicoTransformation(inputStream, outputStream, "mei30", "mpm", properties, tempDir);
+
+        }
+        //MEI30TOMIDI
+        else if (fromDataType.getFormat().equals(Conversion.MEI30TOMPM.getIFormatId()) &&
+                toDataType.getFormat().equals(Conversion.MEI30TOMPM.getOFormatId())) {
+            performMeicoTransformation(inputStream, outputStream, "mei30", "midi", properties, tempDir);
 
         }
     }
@@ -112,7 +136,7 @@ public class MeicoConverter implements Converter {
             if (inputFile != null) {
                 //String newFileName = inputFile.getAbsolutePath().substring(0, inputFile.getAbsolutePath().lastIndexOf(".")) + ".ly";
                 //inputFile.renameTo(new File(newFileName));
-                if (inputFormat.equals("mei")) {
+                if (inputFormat.equals("mei40") || inputFormat.equals("mei30")) {
                     Mei mei = new Mei(inputFile);
                     KeyValue<List<Msm>, List<Mpm>> msmpms = mei.exportMsmMpm(720);    // usually, the application should use mei.exportMsm(720); the cleanup flag is just for debugging (in debug mode no cleanup is done)
                     if (msmpms.getKey().isEmpty()) {
