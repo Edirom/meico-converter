@@ -1,5 +1,7 @@
 package de.edirom.meigarage.meico;
 
+import meico.audio.Audio;
+import meico.midi.Midi;
 import meico.supplementary.KeyValue;
 import nu.xom.ParsingException;
 import org.apache.logging.log4j.Logger;
@@ -23,6 +25,7 @@ import meico.mei.Mei;
 import meico.mpm.Mpm;
 import meico.msm.Msm;
 
+import javax.sound.midi.InvalidMidiDataException;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class MeicoConverter implements Converter {
@@ -137,7 +140,17 @@ public class MeicoConverter implements Converter {
                     LOGGER.error("Output format" + outputFormat + "not available");
                 }
             } else if (inputFormat.equals("midi")) {
-                //NOT implemented yet
+                Midi midi = new Midi(inputFile);
+
+                if (outputFormat.equals("msm")) {
+                    Msm msm = midi.exportMsm();
+                    msm.writeMsm(outTempDir.getPath() + "/" + msm.getFile().getName());
+                } else if (outputFormat.equals("mp3")) {
+                    Audio audio = midi.exportAudio();   // mittels exportAudio(soundbank) kannst Du auch andere Instrumentenklänge verwenden
+                    audio.writeMp3(outTempDir.getPath() + "/" + audio.getFile().getName());
+                } else {
+                    LOGGER.error("Output format" + outputFormat + "not available");
+                }
             } else {
                 LOGGER.error("Input format" + inputFormat + "not available");
             }
@@ -147,6 +160,8 @@ public class MeicoConverter implements Converter {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         } finally {
             if (outTempDir != null && outTempDir.exists())

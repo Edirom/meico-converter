@@ -56,6 +56,58 @@ public enum Conversion {
             "score", // "output type" (score, audio, image, customization)
             true, // "visible as input"
             9 // "cost"
+    ),
+    MIDITOMP3(
+            "miditomp3", // "id"
+            "audio/x-midi", // "input mime type"
+            "midi", // "input format id"
+            "Musical Instrument Digital Interface (MIDI)", // "input description"
+            "audio", // "input type" (score, audio, image, customization)
+            "audio/mp3", // "output mime type"
+            "mp3", // "output format id"
+            "MP3 audio file (MP3)", // "output description"
+            "audio", // "output type" (score, audio, image, customization)
+            true, // "visible as input"
+            9 // "cost"
+    ),
+    MEI30TOMSM(
+            "mei30tomsm", // "id"
+            "text/xml", // "input mime type"
+            "mei30", // "input format id"
+            "MEI 3.0 (2016) Document", // "input description"
+            "score", // "input type" (score, audio, image, customization)
+            "text/xml", // "output mime type"
+            "msm", // "output format id"
+            "MSM (MSM)", // "output description"
+            "score", // "output type" (score, audio, image, customization)
+            true, // "visible as input"
+            9 // "cost"
+    ),
+    MEI30TOMPM(
+            "mei30tompm", // "id"
+            "text/xml", // "input mime type"
+            "mei30", // "input format id"
+            "MEI 3.0 (2016) Document", // "input description"
+            "score", // "input type" (score, audio, image, customization)
+            "text/xml", // "output mime type"
+            "mpm", // "output format id"
+            "Music Performance Markup (MPM)", // "output description"
+            "score", // "output type" (score, audio, image, customization)
+            true, // "visible as input"
+            9 // "cost"
+    ),
+    MEI30TOMIDI(
+            "mei30tomidimeico", // "id"
+            "text/xml", // "input mime type"
+            "mei30", // "input format id"
+            "MEI 3.0 (2016) Document", // "input description"
+            "score", // "input type" (score, audio, image, customization)
+            "audio/x-midi", // "output mime type"
+            "midi-meico", // "output format id"
+            "Musical Instrument Digital Interface (MIDI) (MEICO)", // "output description"
+            "score", // "output type" (score, audio, image, customization)
+            true, // "visible as input"
+            9 // "cost"
     );
 
     // abc, darms, mei, pae, xml
