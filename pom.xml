@@ -61,7 +61,7 @@
         <dependency>
             <groupId>meico.app</groupId>
             <artifactId>meico</artifactId>
-            <version>0.8.45</version>
+            <version>0.8.47</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
