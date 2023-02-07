@@ -11,7 +11,7 @@
 
     <groupId>de.edirom.meigarage</groupId>
     <artifactId>meico-converter</artifactId>
-    <version>0.0.0</version>
+    <version>0.0.1</version>
 
     <name>Meico Converter</name>
     <properties>
