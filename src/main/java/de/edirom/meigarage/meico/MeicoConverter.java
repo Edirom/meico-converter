@@ -159,21 +159,21 @@ public class MeicoConverter implements Converter {
                         for (int i = 0; i < midis.size(); ++i) {
                             midis.get(i).writeMidi(outTempDir.getPath() + "/" + midis.get(i).getFile().getName());   // write midi file to the file system
                         }
+                    } else {
+                        LOGGER.error("Output format" + outputFormat + "not available");
                     }
-                } else {
-                    LOGGER.error("Output format" + outputFormat + "not available");
-                }
-            } else if (inputFormat.equals("midi")) {
-                Midi midi = new Midi(inputFile);
+                } else if (inputFormat.equals("midi")) {
+                    Midi midi = new Midi(inputFile);
 
-                if (outputFormat.equals("msm")) {
-                    Msm msm = midi.exportMsm();
-                    msm.writeMsm(outTempDir.getPath() + "/" + msm.getFile().getName());
-                } else if (outputFormat.equals("mp3")) {
-                    Audio audio = midi.exportAudio();   // mittels exportAudio(soundbank) kannst Du auch andere Instrumentenklänge verwenden
-                    audio.writeMp3(outTempDir.getPath() + "/" + audio.getFile().getName());
-                } else {
-                    LOGGER.error("Output format" + outputFormat + "not available");
+                    if (outputFormat.equals("msm")) {
+                        Msm msm = midi.exportMsm();
+                        msm.writeMsm(outTempDir.getPath() + "/" + msm.getFile().getName());
+                    } else if (outputFormat.equals("mp3")) {
+                        Audio audio = midi.exportAudio();   // mittels exportAudio(soundbank) kannst Du auch andere Instrumentenklänge verwenden
+                        audio.writeMp3(outTempDir.getPath() + "/" + audio.getFile().getName());
+                    } else {
+                        LOGGER.error("Output format" + outputFormat + "not available");
+                    }
                 }
             } else {
                 LOGGER.error("Input format" + inputFormat + "not available");
