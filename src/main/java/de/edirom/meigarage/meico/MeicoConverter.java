@@ -170,7 +170,7 @@ public class MeicoConverter implements Converter {
                         msm.writeMsm(outTempDir.getPath() + "/" + msm.getFile().getName());
                     } else if (outputFormat.equals("mp3")) {
                         Audio audio = midi.exportAudio();   // mittels exportAudio(soundbank) kannst Du auch andere Instrumentenklänge verwenden
-                        audio.writeMp3(outTempDir.getPath() + "/" + audio.getFile().getName());
+                        audio.writeMp3(outTempDir.getPath() + "/" + audio.getFile().getName().substring(0, audio.getFile().getName().lastIndexOf(".")) + ".mp3");
                     } else {
                         LOGGER.error("Output format" + outputFormat + "not available");
                     }

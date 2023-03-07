@@ -52,7 +52,7 @@ public enum Conversion {
             "score", // "input type" (score, audio, image, customization)
             "text/xml", // "output mime type"
             "msm", // "output format id"
-            "MSM (MSM)", // "output description"
+            "Musical Sequence Markup (MSM)", // "output description"
             "score", // "output type" (score, audio, image, customization)
             true, // "visible as input"
             9 // "cost"
