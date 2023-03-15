@@ -87,7 +87,7 @@ public enum Conversion {
             "miditomp3", // "id"
             "audio/x-midi", // "input mime type"
             "midi-meico", // "input format id"
-            "Musical Instrument Digital Interface (MIDI)", // "input description"
+            "Musical Instrument Digital Interface (MIDI) (MEICO)", // "input description"
             "audio", // "input type" (score, audio, image, customization)
             "audio/mp3", // "output mime type"
             "mp3", // "output format id"
