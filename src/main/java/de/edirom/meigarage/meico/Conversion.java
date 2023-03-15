@@ -31,7 +31,7 @@ public enum Conversion {
             true, // "visible as input"
             9 // "cost"
     ),
-    MEI40TOMIDI(
+    MEI40TOMIDIMEICO(
             "mei40tomidimeico", // "id"
             "text/xml", // "input mime type"
             "mei40", // "input format id"
@@ -41,6 +41,19 @@ public enum Conversion {
             "midi-meico", // "output format id"
             "Musical Instrument Digital Interface (MIDI) (MEICO)", // "output description"
             "score", // "output type" (score, audio, image, customization)
+            true, // "visible as input"
+            9 // "cost"
+    ),
+    MEI40TOMP3(
+            "mei40tomp3meico", // "id"
+            "text/xml", // "input mime type"
+            "mei40", // "input format id"
+            "MEI 4.0 (2018) Document", // "input description"
+            "score", // "input type" (score, audio, image, customization)
+            "audio/mp3", // "output mime type"
+            "mp3", // "output format id"
+            "MP3 audio file (MP3)", // "output description"
+            "audio", // "output type" (score, audio, image, customization)
             true, // "visible as input"
             9 // "cost"
     ),
@@ -61,6 +74,19 @@ public enum Conversion {
             "miditomp3", // "id"
             "audio/x-midi", // "input mime type"
             "midi", // "input format id"
+            "Musical Instrument Digital Interface (MIDI)", // "input description"
+            "audio", // "input type" (score, audio, image, customization)
+            "audio/mp3", // "output mime type"
+            "mp3", // "output format id"
+            "MP3 audio file (MP3)", // "output description"
+            "audio", // "output type" (score, audio, image, customization)
+            true, // "visible as input"
+            9 // "cost"
+    ),
+    MIDIMEICOTOMP3(
+            "miditomp3", // "id"
+            "audio/x-midi", // "input mime type"
+            "midi-meico", // "input format id"
             "Musical Instrument Digital Interface (MIDI)", // "input description"
             "audio", // "input type" (score, audio, image, customization)
             "audio/mp3", // "output mime type"
@@ -106,6 +132,19 @@ public enum Conversion {
             "midi-meico", // "output format id"
             "Musical Instrument Digital Interface (MIDI) (MEICO)", // "output description"
             "score", // "output type" (score, audio, image, customization)
+            true, // "visible as input"
+            9 // "cost"
+    ),
+    MEI30TOMP3(
+            "mei30tomp3meico", // "id"
+            "text/xml", // "input mime type"
+            "mei30", // "input format id"
+            "MEI 3.0 (2016) Document", // "input description"
+            "score", // "input type" (score, audio, image, customization)
+            "audio/mp3", // "output mime type"
+            "mp3", // "output format id"
+            "MP3 audio file (MP3)", // "output description"
+            "audio", // "output type" (score, audio, image, customization)
             true, // "visible as input"
             9 // "cost"
     );

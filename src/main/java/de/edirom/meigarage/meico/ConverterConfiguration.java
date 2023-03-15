@@ -23,12 +23,13 @@ public class ConverterConfiguration {
     static {
         CONVERSIONS.add(getConversionActionArgument(Conversion.MEI40TOMSM));
         CONVERSIONS.add(getConversionActionArgument(Conversion.MEI40TOMPM));
-        CONVERSIONS.add(getConversionActionArgument(Conversion.MEI40TOMIDI));
+        CONVERSIONS.add(getConversionActionArgument(Conversion.MEI40TOMIDIMEICO));
         CONVERSIONS.add(getConversionActionArgument(Conversion.MIDITOMSM));
         CONVERSIONS.add(getConversionActionArgument(Conversion.MIDITOMP3));
         CONVERSIONS.add(getConversionActionArgument(Conversion.MEI30TOMSM));
         CONVERSIONS.add(getConversionActionArgument(Conversion.MEI30TOMPM));
         CONVERSIONS.add(getConversionActionArgument(Conversion.MEI30TOMIDI));
+        CONVERSIONS.add(getConversionActionArgument(Conversion.MIDIMEICOTOMP3));
     }
 
     private static ConversionActionArguments getConversionActionArgument(Conversion format) {

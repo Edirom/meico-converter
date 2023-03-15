@@ -13,6 +13,7 @@ import pl.psnc.dl.ege.configuration.EGEConstants;
 import pl.psnc.dl.ege.exception.ConverterException;
 import pl.psnc.dl.ege.types.ConversionActionArguments;
 import pl.psnc.dl.ege.types.DataType;
+import pl.psnc.dl.ege.utils.EGEIOUtils;
 import pl.psnc.dl.ege.utils.IOResolver;
 
 import java.io.*;
@@ -83,10 +84,15 @@ public class MeicoConverter implements Converter {
 
         }
         // MEI 4.0 to MIDI
-        else if (fromDataType.getFormat().equals(Conversion.MEI40TOMIDI.getIFormatId()) &&
-                toDataType.getFormat().equals(Conversion.MEI40TOMIDI.getOFormatId())) {
+        else if (fromDataType.getFormat().equals(Conversion.MEI40TOMIDIMEICO.getIFormatId()) &&
+                toDataType.getFormat().equals(Conversion.MEI40TOMIDIMEICO.getOFormatId())) {
             performMeicoTransformation(inputStream, outputStream, "mei40", "midi", properties, tempDir);
 
+        }
+        // MEI4.0 to MP3 MEI40TOMP3
+        else if(fromDataType.getFormat().equals(Conversion.MEI40TOMP3.getIFormatId()) &&
+                toDataType.getFormat().equals(Conversion.MEI40TOMP3.getOFormatId())) {
+            performMeicoTransformation(inputStream, outputStream, "mei40", "mp3", properties, tempDir);
         }
         // MIDITOMSM
         else if (fromDataType.getFormat().equals(Conversion.MIDITOMSM.getIFormatId()) &&
@@ -97,6 +103,12 @@ public class MeicoConverter implements Converter {
         //MIDITOMP3
         else if (fromDataType.getFormat().equals(Conversion.MIDITOMP3.getIFormatId()) &&
                 toDataType.getFormat().equals(Conversion.MIDITOMP3.getOFormatId())) {
+            performMeicoTransformation(inputStream, outputStream, "midi", "mp3", properties, tempDir);
+
+        }
+        //MIDIMEICOTOMP3
+        else if (fromDataType.getFormat().equals(Conversion.MIDIMEICOTOMP3.getIFormatId()) &&
+                toDataType.getFormat().equals(Conversion.MIDIMEICOTOMP3.getOFormatId())) {
             performMeicoTransformation(inputStream, outputStream, "midi", "mp3", properties, tempDir);
 
         }
@@ -118,6 +130,11 @@ public class MeicoConverter implements Converter {
             performMeicoTransformation(inputStream, outputStream, "mei30", "midi", properties, tempDir);
 
         }
+        // MEI3.0 to MP3 MEI30TOMP3
+        else if(fromDataType.getFormat().equals(Conversion.MEI30TOMP3.getIFormatId()) &&
+                toDataType.getFormat().equals(Conversion.MEI30TOMP3.getOFormatId())) {
+            performMeicoTransformation(inputStream, outputStream, "mei30", "mp3", properties, tempDir);
+        }
     }
 
     private void performMeicoTransformation(InputStream inputStream, OutputStream outputStream,
@@ -126,7 +143,6 @@ public class MeicoConverter implements Converter {
 
         File inTmpDir = null;
         File outTempDir = null;
-        InputStream is = null;
         try {
             inTmpDir = prepareTempDir(tempDir);
             ior.decompressStream(inputStream, inTmpDir);
@@ -159,18 +175,36 @@ public class MeicoConverter implements Converter {
                         for (int i = 0; i < midis.size(); ++i) {
                             midis.get(i).writeMidi(outTempDir.getPath() + "/" + midis.get(i).getFile().getName());   // write midi file to the file system
                         }
-                    } else {
+                    }
+                    else if (outputFormat.equals("mp3")) {
+                            List<meico.midi.Midi> midis = new ArrayList<>();
+                            for (int i = 0; i < msmpms.getKey().size(); ++i) {
+                                midis.add(msmpms.getKey().get(i).exportExpressiveMidi(msmpms.getValue().get(i).getPerformance(0)));    // convert msm + mpm to expressive midi;
+                            }
+                            for (int i = 0; i < midis.size(); ++i) {
+                                Audio audio = midis.get(i).exportAudio();
+                                audio.writeMp3(outTempDir.getPath() + "/" + audio.getFile().getName().substring(0, audio.getFile().getName().lastIndexOf(".")) + ".mp3");   // write midi file to the file system
+                            }
+                        } else {
                         LOGGER.error("Output format" + outputFormat + "not available");
                     }
                 } else if (inputFormat.equals("midi")) {
                     Midi midi = new Midi(inputFile);
-
                     if (outputFormat.equals("msm")) {
                         Msm msm = midi.exportMsm();
                         msm.writeMsm(outTempDir.getPath() + "/" + msm.getFile().getName());
                     } else if (outputFormat.equals("mp3")) {
                         Audio audio = midi.exportAudio();   // mittels exportAudio(soundbank) kannst Du auch andere Instrumentenklänge verwenden
-                        audio.writeMp3(outTempDir.getPath() + "/" + audio.getFile().getName().substring(0, audio.getFile().getName().lastIndexOf(".")) + ".mp3");
+                        byte[] mp3 = audio.getAudioAsMp3();
+                        String path = outTempDir.getPath() + "/" + audio.getFile().getName().substring(0, audio.getFile().getName().lastIndexOf(".")) + ".mp3";
+                        //audio.writeMp3(path);
+                        //not using meico writing method for audio because it caused errors on rancher setup
+                        File outputFile = new File(path);
+                        LOGGER.info("starting to write audio file to disk");
+                        try (FileOutputStream outputStream2 = new FileOutputStream(outputFile)) {
+                            outputStream2.write(mp3);
+                        }
+                        LOGGER.info("written audio file to " + path);
                     } else {
                         LOGGER.error("Output format" + outputFormat + "not available");
                     }
@@ -192,13 +226,8 @@ public class MeicoConverter implements Converter {
                 //EGEIOUtils.deleteDirectory(outTempDir)
                 ;
             if (inTmpDir != null && inTmpDir.exists())
-                //EGEIOUtils.deleteDirectory(inTmpDir)
+                EGEIOUtils.deleteDirectory(inTmpDir)
                 ;
-        }
-        try {
-            is.close();
-        } catch (Exception ex) {
-            // do nothing
         }
     }
 
