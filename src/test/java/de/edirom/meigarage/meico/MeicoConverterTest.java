@@ -44,8 +44,8 @@ public class MeicoConverterTest {
         //        Files.readAllBytes(Paths.get("src/test/resources/expected-output.mp3")),
         //        Files.readAllBytes(Paths.get("src/test/resources/test-output.mp3/test2-input_MEI export performance.mp3")));
         assertEquals("The files differ!",
-                new String(Files.readAllBytes(Paths.get("src/test/resources/test-output.mpm/test2-input.mpm"))).replaceAll("uri=\"[\\s\\S]*?\"|[\\s\\S]*",""),
-                new String(Files.readAllBytes(Paths.get("src/test/resources/expected-output.mpm"))).replaceAll("uri=\"[\\s\\S]*?\"|[\\s\\S]*",""));
+                new String(Files.readAllBytes(Paths.get("src/test/resources/test-output.mpm/test2-input.mpm"))).replaceAll("uri=\"[\\s\\S]*?\"|[\\s]*",""),
+                new String(Files.readAllBytes(Paths.get("src/test/resources/expected-output.mpm"))).replaceAll("uri=\"[\\s\\S]*?\"|[\\s]*",""));
         is.close();
         os.close();
         isout.close();
