@@ -19,3 +19,4 @@
 !test-input.*.zip
 !required.sh
 !meico.jar
+!expected-output.mpm

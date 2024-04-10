@@ -30,6 +30,7 @@ public class ConverterConfiguration {
         CONVERSIONS.add(getConversionActionArgument(Conversion.MEI30TOMPM));
         CONVERSIONS.add(getConversionActionArgument(Conversion.MEI30TOMIDI));
         CONVERSIONS.add(getConversionActionArgument(Conversion.MIDIMEICOTOMP3));
+        CONVERSIONS.add(getConversionActionArgument(Conversion.MEI40TOMP3));
     }
 
     private static ConversionActionArguments getConversionActionArgument(Conversion format) {

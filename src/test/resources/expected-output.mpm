@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mpm xmlns="http://www.cemfi.de/mpm/ns/1.0">
+    <metadata>
+        <author>meico</author>
+        <comment>This MPM has been generated from 'test2-input.mei' using the meico MEI converter.</comment>
+        <relatedResources>
+            <resource uri="/media/data/Arbeit_NFDI4Culture/OxGarages/meico-converter/src/test/temp/88a67b4f-833c-45ca-b993-eb6d922b8475/test2-input.mei" type="mei"/>
+            <resource uri="/media/data/Arbeit_NFDI4Culture/OxGarages/meico-converter/src/test/temp/88a67b4f-833c-45ca-b993-eb6d922b8475/test2-input.msm" type="msm"/>
+        </relatedResources>
+    </metadata>
+    <performance name="MEI export performance" pulsesPerQuarter="720">
+        <global>
+            <header/>
+            <dated/>
+        </global>
+        <part name="" number="1" midi.channel="0" midi.port="0">
+            <header/>
+            <dated>
+                <tempoMap>
+                    <style date="0.0" name.ref="MEI export"/>
+                    <tempo date="0.0" bpm="92" beatLength="0.125"/>
+                </tempoMap>
+            </dated>
+        </part>
+    </performance>
+</mpm>
